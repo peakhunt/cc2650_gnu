@@ -1,0 +1,28 @@
+######################################
+# cc26xxware directory
+######################################
+CC26XXWARE_DIR      := ../cc26xxware_2_24_02_17393
+CC26XXWARE_DRVLIB   := $(CC26XXWARE_DIR)/driverlib
+CC26XXWARE_INC      := $(CC26XXWARE_DIR)
+CC26XXWARE_LDS      := ../cc26x0f128.lds
+
+#######################################
+# gcc and etc
+#######################################
+ifeq ($(OS),Darwin)
+BINPATH = /Users/hawk/toolchains/gcc-arm-none-eabi-5_4-2016q3/bin
+STLINKPATH= /opt/local/bin
+else
+BINPATH = /home/hawk/tools/toolchains/cortex-m/gcc-arm-none-eabi-4_9-2014q4/bin
+STLINKPATH= ~/stlink
+endif
+
+PREFIX = arm-none-eabi-
+CC = $(BINPATH)/$(PREFIX)gcc
+LD = $(BINPATH)/$(PREFIX)ld
+AS = $(BINPATH)/$(PREFIX)gcc -x assembler-with-cpp
+CP = $(BINPATH)/$(PREFIX)objcopy
+AR = $(BINPATH)/$(PREFIX)ar
+SZ = $(BINPATH)/$(PREFIX)size
+HEX = $(CP) -O ihex
+BIN = $(CP) -O binary -S
